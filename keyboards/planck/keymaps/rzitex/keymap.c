@@ -194,18 +194,18 @@ void matrix_scan_user(void) {
          SEND_STRING("tsraTSRA!@#$1234");
          did_leader_succeed = true;
       } 
-      SEQ_TWO_KEYS(KC_W, KC_Q) {
-         SEND_STRING(SS_LCTRL("w")SS_LALT(X_F4));
-         did_leader_succeed = true;
-      }
+      /*SEQ_TWO_KEYS(KC_W, KC_Q) {*/
+         /*SEND_STRING(SS_LCTRL("w")SS_LALT(X_F4));*/
+         /*did_leader_succeed = true;*/
+      /*}*/
       SEQ_ONE_KEY(KC_W) {
          SEND_STRING(SS_LCTRL("w"));
          did_leader_succeed = true;
       } 
-      SEQ_ONE_KEY(KC_BSPC) {
-         SEND_STRING(SS_LGUI(SS_LSHFT(X_BSPC)));
-         did_leader_succeed = true;
-      }
+      /*SEQ_ONE_KEY(KC_BSPC) {*/
+         /*SEND_STRING(SS_LGUI(SS_LSFT(KC_BSPC)));*/
+         /*did_leader_succeed = true;*/
+      /*}*/
       
       leader_end();
    }
@@ -213,7 +213,7 @@ void matrix_scan_user(void) {
 
 void leader_start(void) {
 #ifdef AUDIO_ENABLE
-   PLAY_SONG(leader_start);
+   PLAY_SONG(leader_starter);
 #endif
 }
 
