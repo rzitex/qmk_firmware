@@ -22,7 +22,8 @@
 #define KC_LOCK LGUI(LSFT(KC_Q))
 #define KC_CTLC LCTL(KC_C)
 #define KC_EMU LCTL(KC_GRV)
-
+#define KC_TASK LCTL(LSFT(KC_ESC))
+#define KC_ALTF4 LALT(KC_F4)
 
 extern keymap_config_t keymap_config;
 
@@ -121,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
    /* POK3R
     * ,-----------------------------------------------------------------------------------.
-    * |      |      |      |      |      |      |      | Calc | PGDN | Home | PGUP |      |
+    * | TASK |      |      |      |      |      |      | Calc | PGDN | Home | PGUP |      |
     * |------+------+------+------+------+-------------+------+------+------+------+------|
     * | APP  | MUTE | VOLD | VOLU |      |      |      | Left | Down |  Up  | Right|      |
     * |------+------+------+------+------+------|------+------+------+------+------+------|
@@ -131,7 +132,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * `-----------------------------------------------------------------------------------'
     */
    [_POK3R] = LAYOUT_planck_grid(
-      _______, _______, _______, _______,  _______, _______, KC_CALC, KC_PGDN, KC_HOME, KC_PGUP, _______, _______,
+      KC_TASK, _______, _______, _______,  _______, _______, KC_CALC, KC_PGDN, KC_HOME, KC_PGUP, _______, _______,
       KC_APP , KC_MUTE, KC_VOLD, KC_VOLU,  _______, _______, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______,
       _______, KC_CUT , KC_COPY, KC_PASTE, _______, _______, KC_END , KC_END , _______, _______, _______, _______,
       KC_LEAD, _______, _______, _______,  _______, _______, _______, _______, _______, _______, _______, _______
@@ -173,10 +174,14 @@ void update_quad_layer(uint8_t layer1, uint8_t layer2, uint8_t layer3, uint8_t l
 /*}*/
 
 
+// LEADER KEY SECTION
+
 bool did_leader_succeed;
 
 #ifdef AUDIO_ENABLE
-float leader_succeed[][2] = SONG(ONE_UP_SOUND );
+float leader_starter[][2] = SONG(VIOLIN_SOUND);
+float leader_succeed[][2] = SONG(ONE_UP_SOUND);
+float leader_failure[][2] = SONG(MINOR_SOUND);
 #endif
 
 LEADER_EXTERNS();
@@ -188,18 +193,38 @@ void matrix_scan_user(void) {
       SEQ_ONE_KEY(PASSWD) {
          SEND_STRING("tsraTSRA!@#$1234");
          did_leader_succeed = true;
+      } 
+      SEQ_TWO_KEYS(KC_W, KC_Q) {
+         SEND_STRING(SS_LCTRL("w")SS_LALT(X_F4));
+         did_leader_succeed = true;
+      }
+      SEQ_ONE_KEY(KC_W) {
+         SEND_STRING(SS_LCTRL("w"));
+         did_leader_succeed = true;
+      } 
+      SEQ_ONE_KEY(KC_BSPC) {
+         SEND_STRING(SS_LGUI(SS_LSHFT(X_BSPC)));
+         did_leader_succeed = true;
       }
       
       leader_end();
    }
 }
 
-void leader_start(void) {}
+void leader_start(void) {
+#ifdef AUDIO_ENABLE
+   PLAY_SONG(leader_start);
+#endif
+}
 
 void leader_end(void) {
    if (did_leader_succeed) {
 #ifdef AUDIO_ENABLE
       PLAY_SONG(leader_succeed);
+#endif
+   } else {
+#ifdef AUDIO_ENABLE
+      PLAY_SONG(leader_failure);
 #endif
    }
 }
