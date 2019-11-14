@@ -40,6 +40,7 @@
 
 //#define BACKLIGHT_LEVELS 3
 
+// Leader Key settings
 #define LEADER_PER_KEY_TIMEOUT
 #define LEADER_TIMEOUT 250
 
