@@ -42,6 +42,6 @@
 
 // Leader Key settings
 #define LEADER_PER_KEY_TIMEOUT
-#define LEADER_TIMEOUT 250
+#define LEADER_TIMEOUT 540
 
 #endif
