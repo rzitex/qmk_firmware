@@ -17,6 +17,7 @@
 /*#include "planck.h"*/
 /*#include "action_layer.h"*/
 #include QMK_KEYBOARD_H
+#include "rzitex.h"
 
 #define KC_CAD LALT(LCTL(KC_DEL))
 #define KC_LOCK LGUI(LSFT(KC_Q))
@@ -132,9 +133,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * `-----------------------------------------------------------------------------------'
     */
    [_POK3R] = LAYOUT_planck_grid(
-      KC_TASK, DM_REC1, DM_REC2, DM_PLY1,  DM_PLY1, _______, KC_CALC, KC_PGDN, KC_HOME, KC_PGUP, _______, _______,
-      KC_APP , KC_MUTE, KC_VOLD, KC_VOLU,  DM_RSTP, _______, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______,
-      _______, KC_CUT , KC_COPY, KC_PASTE, _______, _______, KC_END , KC_END , _______, _______, _______, _______,
+      KC_TASK, DM_REC1, DM_PLY1, DM_REC2,  DM_PLY2, DM_RSTP, _______, KC_CALC, KC_PGDN, KC_HOME, KC_PGUP, _______,
+      KC_APP , KC_MUTE, KC_VOLD, KC_VOLU,  _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______,
+      _______, KC_CUT , KC_COPY, KC_PASTE, _______, _______, _______, KC_END , KC_END , _______, _______, _______,
       KC_LEAD, _______, _______, _______,  _______, _______, _______, _______, _______, _______, _______, _______
    ),
 
@@ -158,16 +159,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-void update_quad_layer(uint8_t layer1, uint8_t layer2, uint8_t layer3, uint8_t layer4) {
-  if (IS_LAYER_ON(layer1) && IS_LAYER_ON(layer2)) {
-    layer_on(layer3);
-  } else if (IS_LAYER_ON(layer4)) {
-    layer_on(layer4);
-  } else {
-    layer_off(layer3);
-  }
-}
-
 
 /*layer_state_t layer_state_set_user(layer_state_t state) {*/
   /*return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);*/
@@ -190,6 +181,10 @@ void matrix_scan_user(void) {
    LEADER_DICTIONARY() {
       did_leader_succeed = leading = false;
 
+      SEQ_ONE_KEY(KC_S) {
+         SEND_STRING(SS_DOWN(X_LCTRL) SS_DOWN(X_LSFT) SS_TAP(X_S) SS_UP(X_LSFT) SS_UP(X_LCTRL));
+         did_leader_succeed = true;
+      }
       SEQ_ONE_KEY(KC_W) {
          SEND_STRING(SS_LCTRL("w"));
          did_leader_succeed = true;
