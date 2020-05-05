@@ -10,6 +10,9 @@
     #define DEFAULT_LAYER_SONGS { SONG(QWERTY_SOUND), \
                                   SONG(COLEMAK_SOUND) \
                                 }
+    
+    // Clicky sounds to simulate clicky switches
+    #define AUDIO_CLICKY
 #endif
 
 #define MUSIC_MASK (keycode != KC_NO)
