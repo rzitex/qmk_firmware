@@ -31,22 +31,20 @@ extern keymap_config_t keymap_config;
 enum planck_layers {
    _QWERTY,
    _COLEMAK,
+   _NUMPAD,
    _LOWER,
    _RAISE,
    _POK3R,
-   _NUMPAD,
    _ADJUST
 };
 
 enum planck_keycodes {
    QWERTY = SAFE_RANGE,
    COLEMAK,
+   NUMPAD,
    LOWER,
    RAISE,
-   POK3R,
-   NUMPAD,
-   NUM_OFF,
-   PASSWD
+   POK3R
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -87,40 +85,58 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_LEAD, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_RCTL, POK3R,   KC_RGHT
          ),
 
+   /* NumPad
+    * ,-----------------------------------------------------------------------------------.
+    * |      |      |      |      |      |      |NUMLCK|  7   |  8   |  9   |  /   |      |
+    * |------+------+------+------+------+------+------+------+------+------+------+------|
+    * |      |      |      |      |      |      |      |  4   |  5   |  6   |  *   |      |
+    * |------+------+------+------+------+------+------+------+------+------+------+------|
+    * |      |      |      |      |      |      |  0   |  1   |  2   |  3   |  -   |ENTER |
+    * |------+------+------+------+------+------+------+------+------+------+------+------|
+    * |      |      |      |      |      |      +      |      |  0   |  .   |POK3R |      |
+    * `-----------------------------------------------------------------------------------'
+    */
+   [_NUMPAD] = LAYOUT_planck_grid(
+         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_NLCK, KC_KP_7, KC_KP_8, KC_KP_9, KC_PSLS, XXXXXXX,
+         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_4, KC_KP_5, KC_KP_6, KC_PAST, XXXXXXX,
+         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_0, KC_KP_1, KC_KP_2, KC_KP_3, KC_PMNS, KC_PENT,
+         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, KC_PPLS, KC_PPLS, _______, KC_KP_0, KC_PDOT, POK3R,   XXXXXXX
+         ),
+
    /* Lower
     * ,-----------------------------------------------------------------------------------.
-    * |   ~  |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  | Bksp |
+    * |   ~  |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  | Del  |
     * |------+------+------+------+------+------+------+------+------+------+------+------|
     * | ESC  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   _  |   +  |   {  |   }  |  |   |
     * |------+------+------+------+------+------+------+------+------+------+------+------|
-    * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |ISO ~ |ISO | | Home | End  |      |
+    * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |      |      | Home | End  |      |
     * |------+------+------+------+------+------+------+------+------+------+------+------|
-    * |NUMPAD|      |      |      |      |             |      |      | CAD  |      |      |
+    * |      |      |      |      |      |             |      |      | CAD  |      |      |
     * `-----------------------------------------------------------------------------------'
     */
    [_LOWER] = LAYOUT_planck_grid(
-         KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR,    KC_ASTR,    KC_LPRN, KC_RPRN, KC_BSPC,
-         KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_UNDS,    KC_PLUS,    KC_LCBR, KC_RCBR, KC_PIPE,
-         _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  S(KC_NUHS), S(KC_NUBS), KC_HOME, KC_END,  _______,
-         NUMPAD,  _______, _______, _______, _______, _______, _______, _______,    _______,    RZ_CAD , _______, _______
+         KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL,
+         KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,
+         XXXXXXX, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  XXXXXXX, XXXXXXX, KC_HOME, KC_END,  XXXXXXX,
+         XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, _______, XXXXXXX, RZ_CAD , _______, XXXXXXX
          ),
 
    /* Raise
     * ,-----------------------------------------------------------------------------------.
-    * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
+    * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Del  |
     * |------+------+------+------+------+------+------+------+------+------+------+------|
     * | Del  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   -  |   =  |   [  |   ]  |  \   |
     * |------+------+------+------+------+------+------+------+------+------+------+------|
-    * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |ISO # |ISO / |Pg Up |Pg Dn |      |
+    * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |      |      |Pg Up |Pg Dn |      |
     * |------+------+------+------+------+------+------+------+------+------+------+------|
     * |LEADER|      |      |      |      |             |      |      | LOCK |      |      |
     * `-----------------------------------------------------------------------------------'
     */
    [_RAISE] = LAYOUT_planck_grid(
-         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
+         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL,
          KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS,
-         _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUHS, KC_NUBS, KC_PGUP, KC_PGDN, _______,
-         KC_LEAD, _______, _______, _______, _______, _______, _______, _______, _______, RZ_LOCK, _______, _______
+         XXXXXXX, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  XXXXXXX, XXXXXXX, KC_PGUP, KC_PGDN, XXXXXXX,
+         KC_LEAD, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, _______, XXXXXXX, RZ_LOCK, XXXXXXX, XXXXXXX
          ),
 
    /* POK3R
@@ -131,50 +147,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * |------+------+------+------+------+------+------+------+------+------+------+------|
     * |      | CUT  | COPY | PASTE|      |      |      | End  | End  |      |      |      |
     * |------+------+------+------+------+------+------+------+------+------+------+------|
-    * |LEADER|      |      |      |      |             |      |      |      |      |      |
+    * |LEADER|      |      |      |      |   CONEMU    |      |      |      |      |      |
     * `-----------------------------------------------------------------------------------'
     */
    [_POK3R] = LAYOUT_planck_grid(
-         RZ_TASK, DM_REC1, DM_PLY1, DM_REC2,  DM_PLY2, DM_RSTP, KC_CALC, KC_PGDN, KC_HOME, KC_PGUP, _______, _______,
-         KC_APP , KC_MUTE, KC_VOLD, KC_VOLU,  RZ_SFT5, _______, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______,
-         _______, KC_CUT , KC_COPY, KC_PASTE, _______, _______, KC_END , KC_END , _______, _______, _______, _______,
-         KC_LEAD, _______, _______, _______,  _______, _______, _______, _______, _______, _______, _______, _______
-         ),
-
-   /* NumPad
-    * ,-----------------------------------------------------------------------------------.
-    * |      |      |      |      |      |      |NUMLCK|  7   |  8   |  9   |  /   |      |
-    * |------+------+------+------+------+------+------+------+------+------+------+------|
-    * |      |      |      |      |      |      |      |  4   |  5   |  6   |  *   |      |
-    * |------+------+------+------+------+------+------+------+------+------+------+------|
-    * |      |      |      |      |      |      |      |  1   |  2   |  3   |  -   |ENTER |
-    * |------+------+------+------+------+------+------+------+------+------+------+------|
-    * |NUMOFF|      |      |      |      |      +      |  0   |  0   |  .   |POK3R |      |
-    * `-----------------------------------------------------------------------------------'
-    */
-   [_NUMPAD] = LAYOUT_planck_grid(
-         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_NLCK, KC_KP_7, KC_KP_8, KC_KP_9, KC_PSLS, XXXXXXX,
-         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_4, KC_KP_5, KC_KP_6, KC_PAST, XXXXXXX,
-         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_1, KC_KP_2, KC_KP_3, KC_PMNS, KC_PENT,
-         NUM_OFF, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PPLS, KC_PPLS, KC_KP_0, KC_KP_0, KC_PDOT, POK3R,   XXXXXXX
+         RZ_TASK, DM_REC1, DM_PLY1, DM_REC2,  DM_PLY2, DM_RSTP, KC_CALC, KC_PGDN, KC_HOME, KC_PGUP, XXXXXXX, XXXXXXX,
+         KC_APP , KC_MUTE, KC_VOLD, KC_VOLU,  RZ_SFT5, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, XXXXXXX, XXXXXXX,
+         XXXXXXX, KC_CUT , KC_COPY, KC_PASTE, XXXXXXX, XXXXXXX, KC_END , KC_END , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+         KC_LEAD, XXXXXXX, XXXXXXX, XXXXXXX,  _______, RZ_EMU,  RZ_EMU,  _______, XXXXXXX, XXXXXXX, _______, XXXXXXX
          ),
 
    /* Adjust (Lower + Raise)
     * ,-----------------------------------------------------------------------------------.
     * |      | Reset|      |      |      |      |      |      |      | Pause| Print|  Del |
     * |------+------+------+------+------+------+------+------+------+------+------+------|
-    * | CAPS |      |      |Aud on|Audoff|      |      |Qwerty|Colemk|      |Insert|      |
+    * | CAPS |      |      |Aud on|Audoff|      |      |Qwerty|Colemk|NUMPAD|Insert|      |
     * |------+------+------+------+------+------+------+------+------+------+------+------|
     * |      |CLKTGL|CLK UP|CLKDWN|CLKRST|      |      |AGNORM|AGSWAP|      |      |      |
     * |------+------+------+------+------+------+------+------+------+------+------+------|
-    * |LEADER|      |      |      |      |    RZ_EMU   |      |      |      |      |      |
+    * |LEADER|      |      |      |      |    CONEMU   |      |      |      |      |      |
     * `-----------------------------------------------------------------------------------'
     */
    [_ADJUST] = LAYOUT_planck_grid(
-         _______, RESET,   _______, _______, _______, _______, _______, _______, _______, KC_PAUS, KC_PSCR, KC_DEL ,
-         KC_CAPS, CK_ON,   CK_OFF,  AU_ON,   AU_OFF,  _______, _______, QWERTY,  COLEMAK, _______, KC_INS,  _______,
-         _______, CK_TOGG, CK_UP,   CK_DOWN, CK_RST,  _______, _______, AG_NORM, AG_SWAP, _______, _______, _______,
-         KC_LEAD, _______, _______, _______, _______, RZ_EMU , RZ_EMU , _______, _______, _______, _______, _______
+         XXXXXXX, RESET,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PAUS, KC_PSCR, KC_DEL ,
+         KC_CAPS, CK_ON,   CK_OFF,  AU_ON,   AU_OFF,  XXXXXXX, XXXXXXX, QWERTY,  COLEMAK, NUMPAD,  KC_INS,  XXXXXXX,
+         XXXXXXX, CK_TOGG, CK_UP,   CK_DOWN, CK_RST,  XXXXXXX, XXXXXXX, AG_NORM, AG_SWAP, XXXXXXX, XXXXXXX, XXXXXXX,
+         KC_LEAD, XXXXXXX, XXXXXXX, XXXXXXX, _______, RZ_EMU , RZ_EMU , _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
          )
 
 };
@@ -277,6 +275,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
          }
          return false;
          break;
+      case NUMPAD:
+         if (record->event.pressed) {
+            set_single_persistent_default_layer(_NUMPAD);
+         }
+         return false;
+         break;
       case LOWER:
          if (record->event.pressed) {
             layer_on(_LOWER);
@@ -303,19 +307,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             update_quad_layer(_LOWER, _RAISE, _ADJUST, _POK3R);
          } else {
             layer_off(_POK3R);
-            update_quad_layer(_LOWER, _RAISE, _ADJUST, _POK3R);
-         }
-         return false;
-         break;
-      case NUMPAD:
-         if (record->event.pressed) {
-            layer_move(_NUMPAD);
-         }
-         return false;
-         break;
-      case NUM_OFF:
-         if (record->event.pressed) {
-            layer_off(_NUMPAD);
             update_quad_layer(_LOWER, _RAISE, _ADJUST, _POK3R);
          }
          return false;

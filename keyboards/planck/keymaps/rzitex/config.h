@@ -8,7 +8,8 @@
     // #define STARTUP_SONG SONG(NO_SOUND)
 
     #define DEFAULT_LAYER_SONGS { SONG(QWERTY_SOUND), \
-                                  SONG(COLEMAK_SOUND) \
+                                  SONG(COLEMAK_SOUND), \
+                                  SONG(GUITAR_SOUND) \
                                 }
     
     // Clicky sounds to simulate clicky switches
