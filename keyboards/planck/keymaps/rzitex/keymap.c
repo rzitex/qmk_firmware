@@ -97,10 +97,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * `-----------------------------------------------------------------------------------'
     */
    [_NUMPAD] = LAYOUT_planck_grid(
-         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_NLCK, KC_KP_7, KC_KP_8, KC_KP_9, KC_PSLS, XXXXXXX,
-         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_4, KC_KP_5, KC_KP_6, KC_PAST, XXXXXXX,
-         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_0, KC_KP_1, KC_KP_2, KC_KP_3, KC_PMNS, KC_PENT,
-         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, KC_PPLS, KC_PPLS, _______, KC_KP_0, KC_PDOT, POK3R,   XXXXXXX
+         _______, _______, _______, _______, _______, _______, KC_NLCK, KC_KP_7, KC_KP_8, KC_KP_9, KC_PSLS, _______,
+         _______, _______, _______, _______, _______, _______, _______, KC_KP_4, KC_KP_5, KC_KP_6, KC_PAST, _______,
+         _______, _______, _______, _______, _______, _______, KC_KP_0, KC_KP_1, KC_KP_2, KC_KP_3, KC_PMNS, KC_PENT,
+         _______, _______, _______, _______, _______, KC_PPLS, KC_PPLS, _______, KC_KP_0, KC_PDOT, POK3R,   _______
          ),
 
    /* Lower
@@ -117,8 +117,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    [_LOWER] = LAYOUT_planck_grid(
          KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL,
          KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,
-         XXXXXXX, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  XXXXXXX, XXXXXXX, KC_HOME, KC_END,  XXXXXXX,
-         XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, _______, XXXXXXX, RZ_CAD , _______, XXXXXXX
+         _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, _______, KC_HOME, KC_END,  _______,
+         _______,  _______, _______, _______, _______, _______, _______, _______, _______, RZ_CAD , _______, _______
          ),
 
    /* Raise
@@ -135,8 +135,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    [_RAISE] = LAYOUT_planck_grid(
          KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL,
          KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS,
-         XXXXXXX, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  XXXXXXX, XXXXXXX, KC_PGUP, KC_PGDN, XXXXXXX,
-         KC_LEAD, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, _______, XXXXXXX, RZ_LOCK, XXXXXXX, XXXXXXX
+         _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, _______, KC_PGUP, KC_PGDN, _______,
+         KC_LEAD, _______, _______, _______, _______, _______, _______, _______, _______, RZ_LOCK, _______, _______
          ),
 
    /* POK3R
@@ -152,9 +152,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
    [_POK3R] = LAYOUT_planck_grid(
          RZ_TASK, DM_REC1, DM_PLY1, DM_REC2,  DM_PLY2, DM_RSTP, KC_CALC, KC_PGDN, KC_HOME, KC_PGUP, XXXXXXX, XXXXXXX,
-         KC_APP , KC_MUTE, KC_VOLD, KC_VOLU,  RZ_SFT5, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, XXXXXXX, XXXXXXX,
-         XXXXXXX, KC_CUT , KC_COPY, KC_PASTE, XXXXXXX, XXXXXXX, KC_END , KC_END , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-         KC_LEAD, XXXXXXX, XXXXXXX, XXXXXXX,  _______, RZ_EMU,  RZ_EMU,  _______, XXXXXXX, XXXXXXX, _______, XXXXXXX
+         KC_APP , KC_MUTE, KC_VOLD, KC_VOLU,  RZ_SFT5, _______, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______,
+         _______, KC_CUT , KC_COPY, KC_PASTE, _______, _______, KC_END , KC_END , _______, _______, _______, _______,
+         KC_LEAD, _______, _______, _______,  _______, RZ_EMU,  RZ_EMU,  _______, _______, _______, _______, _______
          ),
 
    /* Adjust (Lower + Raise)
@@ -169,10 +169,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * `-----------------------------------------------------------------------------------'
     */
    [_ADJUST] = LAYOUT_planck_grid(
-         XXXXXXX, RESET,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PAUS, KC_PSCR, KC_DEL ,
-         KC_CAPS, CK_ON,   CK_OFF,  AU_ON,   AU_OFF,  XXXXXXX, XXXXXXX, QWERTY,  COLEMAK, NUMPAD,  KC_INS,  XXXXXXX,
-         XXXXXXX, CK_TOGG, CK_UP,   CK_DOWN, CK_RST,  XXXXXXX, XXXXXXX, AG_NORM, AG_SWAP, XXXXXXX, XXXXXXX, XXXXXXX,
-         KC_LEAD, XXXXXXX, XXXXXXX, XXXXXXX, _______, RZ_EMU , RZ_EMU , _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+         _______, RESET,   _______, _______, _______, _______, _______, _______, _______, KC_PAUS, KC_PSCR, KC_DEL ,
+         KC_CAPS, CK_ON,   CK_OFF,  AU_ON,   AU_OFF,  _______, _______, QWERTY,  COLEMAK, NUMPAD,  KC_INS,  _______,
+         _______, CK_TOGG, CK_UP,   CK_DOWN, CK_RST,  _______, _______, AG_NORM, AG_SWAP, _______, _______, _______,
+         KC_LEAD, _______, _______, _______, _______, RZ_EMU , RZ_EMU , _______, _______, _______, _______, _______
          )
 
 };
