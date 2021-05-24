@@ -24,7 +24,6 @@
 #define RZ_CTLC   LCTL(KC_C)
 #define RZ_EMU    LCTL(KC_GRV)
 #define RZ_TASK   LCTL(LSFT(KC_ESC))
-#define RZ_SFT5   LSFT(KC_F5)
 
 extern keymap_config_t keymap_config;
 
@@ -143,7 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * ,-----------------------------------------------------------------------------------.
     * | TASK |RcMcr1|RcMcr2|PlMcr1|PlMcr2|EndMcr|      | Calc | PGDN | Home | PGUP |      |
     * |------+------+------+------+------+------+------+------+------+------+------+------|
-    * | APP  | MUTE | VOLD | VOLU |      |      |      | Left | Down |  Up  | Right|      |
+    * | APP  |      | MUTE | VOLD | VOLU |      |      | Left | Down |  Up  | Right|      |
     * |------+------+------+------+------+------+------+------+------+------+------+------|
     * |      | CUT  | COPY | PASTE|      |      |      | End  | End  |      |      |      |
     * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -152,7 +151,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
    [_POK3R] = LAYOUT_planck_grid(
          RZ_TASK, DM_REC1, DM_PLY1, DM_REC2,  DM_PLY2, DM_RSTP, KC_CALC, KC_PGDN, KC_HOME, KC_PGUP, XXXXXXX, XXXXXXX,
-         KC_APP , KC_MUTE, KC_VOLD, KC_VOLU,  RZ_SFT5, _______, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______,
+         KC_APP , _______, KC_MUTE, KC_VOLD, KC_VOLU,  _______, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______,
          _______, KC_CUT , KC_COPY, KC_PASTE, _______, _______, KC_END , KC_END , _______, _______, _______, _______,
          KC_LEAD, _______, _______, _______,  _______, RZ_EMU,  RZ_EMU,  _______, _______, _______, _______, _______
          ),
